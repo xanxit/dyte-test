@@ -27,4 +27,4 @@ jobs:
       run: |
         git add .
         git commit -m "Weekly Backup: $date"
-        git push -u origin $backup_branch
+        git push -u origin $backup_branch -f
