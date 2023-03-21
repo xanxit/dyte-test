@@ -17,7 +17,9 @@ jobs:
         master_branch=master
         date=$(date +%d-%m-%Y)
         backup_branch="$master_branch-backup-$date"
-
+        
+        git config --global user.email "sanchit10hajela@gmail.com"
+        git config --global user.name "xanxit"
         git checkout $master_branch
         git checkout -b $backup_branch
 
