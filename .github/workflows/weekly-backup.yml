@@ -2,7 +2,7 @@ name: Weekly Backup
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Run every Sunday at midnight
+    - cron: "30 4,16 * * *" # Run every Sunday at midnight
 
 jobs:
   backup:
@@ -16,7 +16,7 @@ jobs:
       run: |
         master_branch=master
         date=$(date +%d-%m-%Y)
-        backup_branch="$backup - $date"
+        backup_branch="$master_branch-backup-$date"
 
         git checkout $master_branch
         git checkout -b $backup_branch
