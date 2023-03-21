@@ -1,30 +1,30 @@
-name: Weekly Backup
+# name: Weekly Backup
 
-on:
-  schedule:
-    - cron: "* * * * *" # Run every Sunday at midnight
+# on:
+#   schedule:
+#     - cron: "* * * * *" # Run every Sunday at midnight
 
-jobs:
-  backup:
-    runs-on: ubuntu-latest
+# jobs:
+#   backup:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v2
 
-    - name: Create Backup Branch
-      run: |
-        master_branch=master
-        date=$(date +%d-%m-%Y)
-        backup_branch="$master_branch-backup-$date"
+#     - name: Create Backup Branch
+#       run: |
+#         master_branch=master
+#         date=$(date +%d-%m-%Y)
+#         backup_branch="$master_branch-backup-$date"
         
-        git config --global user.email "sanchit10hajela@gmail.com"
-        git config --global user.name "xanxit"
-        git checkout $master_branch
-        git checkout -b $backup_branch
+#         git config --global user.email "sanchit10hajela@gmail.com"
+#         git config --global user.name "xanxit"
+#         git checkout $master_branch
+#         git checkout -b $backup_branch
 
-    - name: Commit and Push Backup Branch
-      run: |
-        git add .
-        git commit -m "Weekly Backup: $date"
-        git push -u origin $backup_branch -f
+#     - name: Commit and Push Backup Branch
+#       run: |
+#         git add .
+#         git commit -m "Weekly Backup: $date"
+#         git push -u origin $backup_branch -f
