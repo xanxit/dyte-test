@@ -1,0 +1,28 @@
+name: Weekly Backup
+
+on:
+  schedule:
+    - cron: "*/5 * * * *" # Run every Sunday at midnight
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create Backup Branch
+      run: |
+        master_branch=master
+        date=$(date +%d-%m-%Y)
+        backup_branch="$backup - $date"
+
+        git checkout $master_branch
+        git checkout -b $backup_branch
+
+    - name: Commit and Push Backup Branch
+      run: |
+        git add .
+        git commit -m "Weekly Backup: $date"
+        git push -u origin $backup_branch
