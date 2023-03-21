@@ -2,7 +2,7 @@ name: Weekly Backup
 
 on:
   schedule:
-    - cron: "30 4,16 * * *" # Run every Sunday at midnight
+    - cron: "* * * * *" # Run every Sunday at midnight
 
 jobs:
   backup:
