@@ -1,0 +1,22 @@
+name: Weekly Backup
+on:
+  schedule:
+    - cron: '* * * * *' # every Sunday at midnight UTC
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: test
+          fetch-depth: 0
+      - name: Create backup branch
+        run: |
+          git checkout -b backup-test
+          git push -u origin backup-test
+      - name: Merge branch into backup branch
+        run: |
+          git checkout backup-test
+          git merge master --no-edit
+          git push
